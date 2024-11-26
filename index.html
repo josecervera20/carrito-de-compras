@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Titulo -->
+  <title>Carrito de compras</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./assets/carrito-de-compras.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="contenido-principal">
+    <div class="grafico-azul"></div>
+    <section class="agregar-producto">
+      <h1 class="titulo">
+        Carrito de <span class="texto-azul">compras</span>
+      </h1>
+
+      <form class="formulario">
+        <label class="campo-grupo">
+          <span class="texto-medio-azul">Producto</span>
+          <select class="producto-input" name="producto" id="producto">
+            <option value="Auriculares - $600">Auriculares - $600</option>
+            <option value="Celular - $9400">Celular - $9,400</option>
+            <option value="Oculus VR - $5000">Oculus VR - $5,000</option>
+          </select>
+        </label>
+
+        <section class="parte-inferior">
+          <label class="campo-grupo">
+            <span class="texto-medio-azul">Cant.</span>
+            <input class="cantidad-input" id="cantidad" type="number" placeholder="100">
+          </label>
+
+          <section class="botones-wrapper">
+            <button onclick="agregar()" type="button" class="boton-form boton-agregar">Agregar</button>
+            <button onclick="limpiar()" type="button" class="boton-form boton-limpiar">Limpiar</button>
+          </section>
+        </section>
+      </form>
+    </section>
+    <section class="carrito">
+      <img src="./assets/carrito-gris.svg" alt="Imagen de un carrito de compras gris">
+
+      <div class="titulo-wrapper">
+        <img src="./assets/icono-carrito.svg" alt="Ícono de carrito">
+
+        <h2 class="carrito__titulo">Productos en el carrito</h2>
+      </div>
+
+      <section class="carrito__productos" id="lista-productos">
+
+      </section>
+
+      <div class="division"></div>
+
+      <p class="carrito__total">
+        Total: <span class="texto-azul" id="valor-total">$0.00</span>
+      </p>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
