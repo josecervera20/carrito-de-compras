@@ -8,9 +8,8 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;600;700&display=swap"
-    rel="stylesheet">
-  <!-- Titulo -->
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Título -->
   <title>Carrito de compras</title>
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="./assets/carrito-de-compras.png">
@@ -21,13 +20,15 @@
 <body>
   <main class="contenido-principal">
     <div class="grafico-azul"></div>
+
+    <!-- Formulario para agregar productos -->
     <section class="agregar-producto">
       <h1 class="titulo">
         Carrito de <span class="texto-azul">compras</span>
       </h1>
-
       <form class="formulario">
-        <label class="campo-grupo">
+        <!-- Selección de producto -->
+        <label class="campo-grupo" for="producto">
           <span class="texto-medio-azul">Producto</span>
           <select class="producto-input" name="producto" id="producto">
             <option value="Auriculares - $600">Auriculares - $600</option>
@@ -37,39 +38,43 @@
         </label>
 
         <section class="parte-inferior">
-          <label class="campo-grupo">
+          <!-- Campo para cantidad -->
+          <label class="campo-grupo" for="cantidad">
             <span class="texto-medio-azul">Cant.</span>
-            <input class="cantidad-input" id="cantidad" type="number" placeholder="100">
+            <input class="cantidad-input" id="cantidad" name="cantidad" type="number" placeholder="100">
           </label>
 
+          <!-- Botones: Agregar / Limpiar -->
           <section class="botones-wrapper">
-            <button onclick="agregar()" type="button" class="boton-form boton-agregar">Agregar</button>
-            <button onclick="limpiar()" type="button" class="boton-form boton-limpiar">Limpiar</button>
+            <button id="btn-agregar" type="button" class="boton-form boton-agregar">Agregar</button>
+            <button id="btn-limpiar" type="button" class="boton-form boton-limpiar">Limpiar</button>
           </section>
         </section>
       </form>
     </section>
+
+    <!-- Vista del carrito de productos -->
     <section class="carrito">
       <img src="./assets/carrito-gris.svg" alt="Imagen de un carrito de compras gris">
 
       <div class="titulo-wrapper">
         <img src="./assets/icono-carrito.svg" alt="Ícono de carrito">
-
         <h2 class="carrito__titulo">Productos en el carrito</h2>
       </div>
 
-      <section class="carrito__productos" id="lista-productos">
-
-      </section>
+      <!-- Productos agregados -->
+      <section class="carrito__productos" id="lista-productos"></section>
 
       <div class="division"></div>
 
+      <!-- Total del carrito -->
       <p class="carrito__total">
         Total: <span class="texto-azul" id="valor-total">$0.00</span>
       </p>
     </section>
   </main>
 
+  <!-- JS -->
   <script src="js/app.js"></script>
 </body>
 
