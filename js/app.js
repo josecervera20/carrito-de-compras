@@ -1,59 +1,71 @@
-let total = 0; // Inicializamos el total en 0
+// Referencias al DOM
+const cantidadInput = document.getElementById("cantidad");
+const productoSelect = document.getElementById("producto");
+const listaProductos = document.getElementById("lista-productos");
+const valorTotal = document.getElementById("valor-total");
+const btnAgregar = document.getElementById("btn-agregar");
+const btnLimpiar = document.getElementById("btn-limpiar");
+
+// Total acumulado
+let total = 0;
 
 /**
- * Función para agregar un producto al carrito
+ * Agrega un producto al carrito después de validar la cantidad.
+ * @function agregar
  */
 function agregar() {
-  // Obtenemos el valor del input de cantidad
-  const cantidad = document.getElementById("cantidad").value;
+  const cantidad = parseInt(cantidadInput.value, 10);
 
-  // Validamos que la cantidad sea mayor a 0 y menor o igual a 100
-  if (cantidad > 0 && cantidad <= 100) {
-    // Recuperamos el producto seleccionado
-    const producto = document.getElementById("producto").value;
+  // Validación de cantidad
+  if (Number.isInteger(cantidad) && cantidad > 0 && cantidad <= 100) {
+    const producto = productoSelect.value;
     const [nombreProducto, valorProducto] = producto.split(" - $");
 
-    // Convertimos el valor del producto a número
     const precioUnitario = parseFloat(valorProducto);
-
-    // Calculamos el precio total para la cantidad seleccionada
     const precioTotalProducto = cantidad * precioUnitario;
 
-    // Sumamos el precio del producto al total general
     total += precioTotalProducto;
 
-    // Actualizamos el total del carrito en el DOM, formateado con comas
-    const campoTotal = document.getElementById("valor-total");
-    campoTotal.textContent = `$${total.toLocaleString("es-MX")}`;
+    // Actualizar el DOM con nuevo total
+    valorTotal.textContent = `$${total.toLocaleString("es-MX")}`;
 
-    // Creamos una nueva entrada en el carrito con el producto agregado
-    const carrinho = document.getElementById("lista-productos");
-    carrinho.innerHTML += `
+    // Crear y añadir el producto al carrito
+    const productoHTML = `
       <section class="carrito__productos__producto">
-        <span class="texto-azul">${cantidad}x</span> ${nombreProducto} 
+        <span class="texto-azul">${cantidad}x</span> ${nombreProducto}
         <span class="texto-azul">$${precioTotalProducto.toLocaleString(
           "es-MX"
         )}</span>
       </section>
     `;
+    listaProductos.innerHTML += productoHTML;
 
-    // Limpiamos el campo de cantidad
-    document.getElementById("cantidad").value = "";
+    // Limpiar el campo de cantidad
+    cantidadInput.value = "";
   } else {
-    // Mostramos un mensaje de alerta si la cantidad no es válida
     alert("Por favor, ingresa una cantidad válida (1-100).");
-    document.getElementById("cantidad").value = "";
+    cantidadInput.value = "";
   }
 }
 
 /**
- * Función para limpiar el carrito
+ * Limpia todos los productos del carrito y reinicia el total.
+ * @function limpiar
  */
 function limpiar() {
-  // Reiniciamos el total a 0
   total = 0;
-
-  // Limpiamos los productos del carrito y el total mostrado
-  document.getElementById("lista-productos").innerHTML = "";
-  document.getElementById("valor-total").textContent = "$0.00";
+  listaProductos.innerHTML = "";
+  valorTotal.textContent = "$0.00";
 }
+
+/**
+ * Inicializa los eventos del DOM una vez cargado.
+ * @function init
+ */
+function init() {
+  btnAgregar.addEventListener("click", agregar);
+  btnLimpiar.addEventListener("click", limpiar);
+}
+
+// Esperar a que el DOM esté listo antes de asociar eventos
+document.addEventListener("DOMContentLoaded", init);
